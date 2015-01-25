@@ -1,0 +1,31 @@
+body {
+	margin: 0 1em;
+}
+
+input[type="file"]{
+	width: auto;
+	height: 31px;
+	*margin-top: 4px;
+	line-height: 31px;
+	color:#c8c8c8;
+}
+
+img.thumbnail {
+	max-width: 300px;
+	max-height: 200px;
+}
+
+h3 {
+	margin: 0.5em 1em;
+}
+
+a.search-result {
+		text-decoration: underline;
+}
+
+.left-pain {
+}
+
+.right-pain {
+ 
+}

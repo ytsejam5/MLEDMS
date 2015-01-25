@@ -1,0 +1,75 @@
+<pipeline xmlns="http://marklogic.com/cpf/pipelines">
+
+<pipeline-name>Document Filter Pipeline</pipeline-name>
+	<pipeline-description>Pipeline to filter document</pipeline-description>
+	<success-action>
+		<module>/MarkLogic/cpf/actions/success-action.xqy</module>
+	</success-action>
+	<failure-action>
+		<module>/MarkLogic/cpf/actions/failure-action.xqy</module>
+	</failure-action>
+
+	<status-transition>
+		<annotation></annotation>
+		<status>deleted</status>
+		<on-success>http://marklogic.com/states/done</on-success>
+		<on-failure>http://marklogic.com/states/error</on-failure>
+		<priority>1</priority>
+		<execute>
+			<condition>
+				<module>/ytsejam5/mledms/cpf/teardown-condition.xqy</module>
+			</condition>
+			<action>
+				<module>/ytsejam5/mledms/cpf/teardown-action.xqy</module>
+			</action>
+		</execute>
+	</status-transition>
+
+   <status-transition>
+		<annotation></annotation>
+		<status>created</status>
+		<on-success>http://marklogic.com/states/done</on-success>
+		<on-failure>http://marklogic.com/states/error</on-failure>
+		<priority>100</priority>
+		<execute>
+			<condition>
+				<module>/ytsejam5/mledms/cpf/metadata-udpate-condition.xqy</module>
+			</condition>
+			<action>
+				<module>/ytsejam5/mledms/cpf/metadata-udpate-action.xqy</module>
+			</action>
+		</execute>
+	</status-transition>
+		
+   <status-transition>
+		<annotation></annotation>
+		<status>updated</status>
+		<on-success>http://marklogic.com/states/done</on-success>
+		<on-failure>http://marklogic.com/states/error</on-failure>
+		<priority>1</priority>
+		<execute>
+			<condition>
+				<module>/ytsejam5/mledms/cpf/metadata-udpate-condition.xqy</module>
+			</condition>
+			<action>
+				<module>/ytsejam5/mledms/cpf/metadata-udpate-action.xqy</module>
+			</action>
+		</execute>
+	</status-transition>
+	
+   <status-transition>
+		<annotation></annotation>
+		<status>property-updated</status>
+		<on-success>http://marklogic.com/states/done</on-success>
+		<on-failure>http://marklogic.com/states/error</on-failure>
+		<priority>1</priority>
+		<execute>
+			<condition>
+				<module>/ytsejam5/mledms/cpf/metadata-udpate-condition.xqy</module>
+			</condition>
+			<action>
+				<module>/ytsejam5/mledms/cpf/metadata-udpate-action.xqy</module>
+			</action>
+		</execute>
+	</status-transition>
+</pipeline>
