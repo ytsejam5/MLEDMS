@@ -32,4 +32,4 @@ let $parent-roles := mledms-security:user-get-roles($user/mledms:user/mledms:use
 let $statement := map:put($request-attribute, "parent-roles", $parent-roles)
 
 return
-    mledms-utils:forward("admin/security/user-parent-roles.xqy", $request-attribute)
+    mledms-utils:forward("/admin/security/user-parent-roles.xqy", $request-attribute)

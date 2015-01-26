@@ -4,4 +4,4 @@ import module namespace mledms-utils = "https://github.com/ytsejam5/mledml/utils
 
 declare variable $request-attribute as map:map external;
 
-    mledms-utils:forward("retention.xqy", $request-attribute)
+    mledms-utils:forward("/retention.xqy", $request-attribute)

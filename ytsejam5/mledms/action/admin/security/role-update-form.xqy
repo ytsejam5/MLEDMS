@@ -28,4 +28,4 @@ let $statement := map:put($request-attribute, "role", $role)
 let $statement := map:put($request-attribute, "form-type", "admin/security/role-update")
 
 return
-    mledms-utils:forward("admin/security/role-form.xqy", $request-attribute)
+    mledms-utils:forward("/admin/security/role-form.xqy", $request-attribute)

@@ -13,6 +13,7 @@ if (cpf:check-transition($cpf:document-uri, $cpf:transition)) then
 
         let $filtered-data := xdmp:document-filter($document)
 
+ (:
         let $language := (
             for $i in xdmp:encoding-language-detect($filtered-data)
             where $i/*:score > 10
@@ -20,7 +21,10 @@ if (cpf:check-transition($cpf:document-uri, $cpf:transition)) then
                 return $i/*:language)[1]
 
         let $language := if ($language) then ($language) else ("ja")
+:)
 
+        let $language := "ja"
+        
         let $filtered-data :=
             element html {
                 attribute xml:lang { $language },

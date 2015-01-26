@@ -6,4 +6,4 @@ declare variable $request-attribute as map:map external;
 
 let $statement := map:put($request-attribute, "form-type", "create")
 return
-    mledms-utils:forward("document-form.xqy", $request-attribute)
+    mledms-utils:forward("/document-form.xqy", $request-attribute)

@@ -42,4 +42,4 @@ let $statement := map:put($request-attribute, "query", $query)
 let $statement := map:put($request-attribute, "search-result", $search-result)
 
 return
-    mledms-utils:forward("search.xqy", $request-attribute)
+    mledms-utils:forward("/search.xqy", $request-attribute)

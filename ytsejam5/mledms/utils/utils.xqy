@@ -3,6 +3,8 @@ xquery version "1.0-ml";
 
 module namespace mledms-utils = "https://github.com/ytsejam5/mledml/utils";
 
+declare namespace search = "http://marklogic.com/appservices/search";
+
 declare variable $mledms-utils:use-writer := fn:true();
 
 declare function mledms-utils:random-hex($seq as xs:integer*) as xs:string+ {
@@ -20,14 +22,16 @@ declare function mledms-utils:guid() as xs:string {
 
 declare function mledms-utils:forward($view as xs:string, $request-attribute as map:map) as item()* {
     map:put($request-attribute, "view", $view),
-    xdmp:invoke("/view/framework/template.xqy", (xs:QName("mledms-utils:request-attribute"), $request-attribute), (
+    xdmp:invoke("/ytsejam5/mledms/view/framework/template.xqy", (xs:QName("mledms-utils:request-attribute"), $request-attribute), (
         <options xmlns="xdmp:eval">
             <isolation>same-statement</isolation>
         </options>))
 };
 
 declare function mledms-utils:import-viewpart($path as xs:string, $request-attribute as map:map) as item()* {
-    xdmp:invoke($path, (xs:QName("mledms-utils:request-attribute"), $request-attribute), (
+    let $view-part := fn:concat("/ytsejam5/mledms/view", $path)
+    return
+    xdmp:invoke($view-part, (xs:QName("mledms-utils:request-attribute"), $request-attribute), (
         <options xmlns="xdmp:eval">
             <isolation>same-statement</isolation>
         </options>))

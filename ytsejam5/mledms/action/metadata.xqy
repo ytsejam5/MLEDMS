@@ -18,4 +18,4 @@ let $metadata := mledms-utils:get-metadata($document-uri)
 let $statement := map:put($request-attribute, "metadata", $metadata)
 
 return
-    mledms-utils:forward("metadata.xqy", $request-attribute)
+    mledms-utils:forward("/metadata.xqy", $request-attribute)

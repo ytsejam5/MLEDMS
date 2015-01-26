@@ -91,7 +91,7 @@ xdmp:set-response-content-type("text/html; charset=UTF-8"),
             </div>
         </nav>
 {
-    let $view := fn:concat("/view/", map:get($mledms-utils:request-attribute, "view"))
+    let $view := fn:concat("/ytsejam5/mledms/view", map:get($mledms-utils:request-attribute, "view"))
     return
         xdmp:invoke($view, (xs:QName("mledms-utils:request-attribute"), $mledms-utils:request-attribute),
             <options xmlns="xdmp:eval">

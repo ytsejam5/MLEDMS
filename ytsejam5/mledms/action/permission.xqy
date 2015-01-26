@@ -29,4 +29,4 @@ let $permissions := xdmp:document-get-permissions($document-uri)
 let $statement := map:put($request-attribute, "permissions", $permissions)
 
 return
-    mledms-utils:forward("permission.xqy", $request-attribute)
+    mledms-utils:forward("/permission.xqy", $request-attribute)

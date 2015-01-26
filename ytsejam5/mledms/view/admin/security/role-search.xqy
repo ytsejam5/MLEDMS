@@ -20,7 +20,7 @@ return
         
             <div class="col-lg-3 left-pane">
 {
-    mledms-utils:import-viewpart("/view/admin/parts/admin-menu.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/admin/parts/admin-menu.xqy", $mledms-utils:request-attribute)
 }  
             </div>
             <div class="col-lg-9 right-pane">
@@ -43,7 +43,7 @@ return
                     </div>
                     <hr/>
 {
-    mledms-utils:import-viewpart("/view/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
 } 
                     <hr/>
 {   for $i in $search-result/search:result
@@ -55,7 +55,7 @@ return
 }
                 <hr/>
 {
-    mledms-utils:import-viewpart("/view/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
 } 
                 <hr/>
                 </fieldset>

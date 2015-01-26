@@ -7,7 +7,7 @@ let $request-attribute :=  map:map()
 return
     try {
         let $statement := map:put($request-attribute, "command", $command)
-        let $action-query := fn:concat("action/", $command, ".xqy")
+        let $action-query := fn:concat("/ytsejam5/mledms/action/", $command, ".xqy")
         let $statement := xdmp:log(fn:concat("invoking ", $action-query, " action"))
         return
             xdmp:invoke(
@@ -24,5 +24,5 @@ return
 
         let $statement := map:put($request-attribute, "error", $e)
         return
-            mledms-utils:forward("framework/error.xqy", $request-attribute)
+            mledms-utils:forward("/framework/error.xqy", $request-attribute)
     }

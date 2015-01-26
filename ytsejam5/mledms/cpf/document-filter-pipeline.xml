@@ -1,6 +1,6 @@
 <pipeline xmlns="http://marklogic.com/cpf/pipelines">
 
-<pipeline-name>Document Filter Pipeline</pipeline-name>
+	<pipeline-name>Document Filter Pipeline</pipeline-name>
 	<pipeline-description>Pipeline to filter document</pipeline-description>
 	<success-action>
 		<module>/MarkLogic/cpf/actions/success-action.xqy</module>
@@ -30,13 +30,13 @@
 		<status>created</status>
 		<on-success>http://marklogic.com/states/done</on-success>
 		<on-failure>http://marklogic.com/states/error</on-failure>
-		<priority>100</priority>
+		<priority>1</priority>
 		<execute>
 			<condition>
-				<module>/ytsejam5/mledms/cpf/metadata-udpate-condition.xqy</module>
+				<module>/ytsejam5/mledms/cpf/metadata-update-condition.xqy</module>
 			</condition>
 			<action>
-				<module>/ytsejam5/mledms/cpf/metadata-udpate-action.xqy</module>
+				<module>/ytsejam5/mledms/cpf/metadata-update-action.xqy</module>
 			</action>
 		</execute>
 	</status-transition>
@@ -49,10 +49,10 @@
 		<priority>1</priority>
 		<execute>
 			<condition>
-				<module>/ytsejam5/mledms/cpf/metadata-udpate-condition.xqy</module>
+				<module>/ytsejam5/mledms/cpf/metadata-update-condition.xqy</module>
 			</condition>
 			<action>
-				<module>/ytsejam5/mledms/cpf/metadata-udpate-action.xqy</module>
+				<module>/ytsejam5/mledms/cpf/metadata-update-action.xqy</module>
 			</action>
 		</execute>
 	</status-transition>
@@ -65,10 +65,10 @@
 		<priority>1</priority>
 		<execute>
 			<condition>
-				<module>/ytsejam5/mledms/cpf/metadata-udpate-condition.xqy</module>
+				<module>/ytsejam5/mledms/cpf/metadata-update-condition.xqy</module>
 			</condition>
 			<action>
-				<module>/ytsejam5/mledms/cpf/metadata-udpate-action.xqy</module>
+				<module>/ytsejam5/mledms/cpf/metadata-update-action.xqy</module>
 			</action>
 		</execute>
 	</status-transition>

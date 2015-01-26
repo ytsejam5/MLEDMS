@@ -23,7 +23,7 @@ return
         
             <div class="col-lg-3 left-pane">
 {
-    mledms-utils:import-viewpart("/view/admin/security/parts/user-menu.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/admin/security/parts/user-menu.xqy", $mledms-utils:request-attribute)
 } 
             </div>
             <div class="col-lg-9 right-pane">
@@ -49,7 +49,7 @@ return
                 <form class="form-horizontal" method="post" action="{mledms-utils:create-command-url("admin/security/user-parent-roles-update", ())}">
                     <input type="hidden" name="user-id" value="{ $user-id }"/>
 {
-    mledms-utils:import-viewpart("/view/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
 } 
                     <hr/>                    
                     <fieldset>
@@ -80,7 +80,7 @@ return
                     
                         <hr/>
 {
-    mledms-utils:import-viewpart("/view/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
 } 
                         <hr/>
                         <div class="row">

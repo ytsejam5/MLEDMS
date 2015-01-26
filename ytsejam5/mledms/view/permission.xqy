@@ -22,7 +22,7 @@ return
         
             <div class="col-lg-3 left-pane">
 {
-    mledms-utils:import-viewpart("/view/parts/document-menu.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/parts/document-menu.xqy", $mledms-utils:request-attribute)
 }   
             </div>
             <div class="col-lg-9 right-pane">
@@ -32,7 +32,7 @@ return
                         <legend>アクセス権限</legend>
                         <hr/>
 {
-    mledms-utils:import-viewpart("/view/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
 } 
                         <hr/>
 {
@@ -64,7 +64,7 @@ return
  }
                         <hr/>
 {
-    mledms-utils:import-viewpart("/view/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
 } 
                         <hr/>
                         <div class="row">

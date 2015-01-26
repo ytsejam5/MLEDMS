@@ -25,4 +25,4 @@ let $statement := map:put($request-attribute, "collections", $collections)
 let $statement := map:put($request-attribute, "weight", $weight)
 
 return
-    mledms-utils:forward("detail.xqy", $request-attribute)
+    mledms-utils:forward("/detail.xqy", $request-attribute)

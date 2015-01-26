@@ -18,7 +18,7 @@ return
         
             <div class="col-lg-3 left-pane">
 {
-    mledms-utils:import-viewpart("/view/admin/security/parts/role-menu.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/admin/security/parts/role-menu.xqy", $mledms-utils:request-attribute)
 }  
             </div>
             <div class="col-lg-9 right-pane">

@@ -17,7 +17,7 @@ return
         
             <div class="col-lg-3 left-pane">
 {
-    mledms-utils:import-viewpart("/view/parts/document-menu.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/parts/document-menu.xqy", $mledms-utils:request-attribute)
 }   
             </div>
             <div class="col-lg-9 right-pane">

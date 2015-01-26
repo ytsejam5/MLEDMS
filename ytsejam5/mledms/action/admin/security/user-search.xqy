@@ -15,5 +15,5 @@ let $statement := map:put($request-attribute, "query", $query)
 let $statement := map:put($request-attribute, "search-result", $search-result)
         
 return (
-    mledms-utils:forward("admin/security/user-search.xqy", $request-attribute)
+    mledms-utils:forward("/admin/security/user-search.xqy", $request-attribute)
 )

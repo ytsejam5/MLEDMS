@@ -29,4 +29,4 @@ let $statement :=
     ) else ()
 
 return
-    mledms-utils:forward("version.xqy", $request-attribute)
+    mledms-utils:forward("/version.xqy", $request-attribute)

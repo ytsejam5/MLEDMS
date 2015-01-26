@@ -18,4 +18,4 @@ let $lock := xdmp:document-locks($document-uri)
 let $statement := map:put($request-attribute, "lock", $lock)
 
 return
-    mledms-utils:forward("lock-status.xqy", $request-attribute)
+    mledms-utils:forward("/lock-status.xqy", $request-attribute)

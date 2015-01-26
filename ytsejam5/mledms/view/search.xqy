@@ -1,4 +1,4 @@
-xquery version "1.0-ml";
+﻿xquery version "1.0-ml";
 
 import module namespace mledms-utils = "https://github.com/ytsejam5/mledml/utils" at "/ytsejam5/mledms/utils/utils.xqy";
 import module namespace search = "http://marklogic.com/appservices/search" at "/MarkLogic/appservices/search/search.xqy";
@@ -55,27 +55,49 @@ return
                     </div>
                     <hr/>
 {
-    mledms-utils:import-viewpart("/view/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
 }  
                     <hr/>
 {
-    for $i in $search-result/search:result
+    for $result in $search-result/search:result
     return (
                     <div class="panel panel-default col-sm-offset-1">
                         <div class="panel-heading">
-                            <a class="search-result" href="{mledms-utils:create-command-url("detail", <params><param name="document-uri">{ fn:string($i/@uri) }</param></params>)}">{ fn:string($i/@uri) }</a>
+                            <a class="search-result" href="{mledms-utils:create-command-url("detail", <params><param name="document-uri">{ fn:string($result/@uri) }</param></params>)}">{ fn:string($result/@uri) }</a>
                         </div>
                         <div class="panel-body">
-                            { cts:highlight($i, $query, <span>&lt;&lt;<strong>{$cts:text}</strong>&gt;&gt;</span>) }
+        {
+                for $i at $pos in $result/node()/search:match
+                return (
+                    if ($pos ne 1) then text {" ... "} else (),
+                            <span data-toggle="tooltip" data-placement="bottom" title="{ fn:replace(xdmp:quote($i/@path), "^.*""\)/prop:properties(.*)", "$1") }">
+                    {
+                        if (fn:matches(xdmp:quote($i), "<search:highlight")) then (
+                            xdmp:unquote(
+                                fn:replace(
+                                    fn:replace(
+                                        xdmp:quote($i),
+                                        "<search:highlight[^>]*>([^<]*)</search:highlight>",
+                                        "<strong>$1</strong>"),
+                                    "<search:match[^>]*>([^<]*)</search:match>",
+                                    "$1")
+                                )
+                        ) else (
+                            $i
+                        )
+                    }
+                            </span>
+                )
+        }
                             <br/><br/>
-                            <div class="text-right">Score:{ fn:string($i/@score) }, Confidence:{ fn:string($i/@confidence) }, Fitness:{ fn:string($i/@fitness) }</div>
+                            <div class="text-right">Score:{ fn:string($result/@score) }, Confidence:{ fn:string($result/@confidence) }, Fitness:{ fn:string($result/@fitness) }</div>
                         </div>
                     </div>
     )
 }
                     <hr/>
 {
-    mledms-utils:import-viewpart("/view/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
+    mledms-utils:import-viewpart("/parts/search-pagenation.xqy", $mledms-utils:request-attribute)
 } 
                     <hr/>
 {

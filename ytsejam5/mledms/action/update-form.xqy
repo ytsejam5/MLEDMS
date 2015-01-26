@@ -22,4 +22,4 @@ let $statement := map:put($request-attribute, "weight", $weight)
 let $statement := map:put($request-attribute, "form-type", "update")
 
 return
-    mledms-utils:forward("document-form.xqy", $request-attribute)
+    mledms-utils:forward("/document-form.xqy", $request-attribute)
