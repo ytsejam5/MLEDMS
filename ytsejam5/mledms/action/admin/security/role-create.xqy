@@ -25,7 +25,7 @@ return (
     let $role-id := mledms-security:create-role($role-name, $description, $parent-roles, $permissions, $collections, $compartment, $external-names)
 
     (: here are temporary implementation :)
-    let $statement := mledms-security:role-add-role($role-name, "dls-user")
+    let $statement := mledms-security:role-add-roles($role-name, ("dls-user"))
 
     let $statement := mledms-security:privilege-add-role("http://marklogic.com/xdmp/privileges/dls-user", "execute", $role-name)
     let $statement := mledms-security:privilege-add-role("http://marklogic.com/xdmp/privileges/xdmp-eval", "execute", $role-name)

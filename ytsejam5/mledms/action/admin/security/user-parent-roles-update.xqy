@@ -52,5 +52,5 @@ return (
     xdmp:log("removed:"),
     xdmp:log($removing-parent-roles),
     
-    xdmp:redirect-response(mledms-utils:create-command-url("admin/security/user-detail", (<params><param name="user-id">{ $user-id }</param></params>)))
+    xdmp:redirect-response(mledms-utils:create-command-url("admin/security/user-parent-roles", (<params><param name="user-id">{ $user-id }</param></params>)))
 )

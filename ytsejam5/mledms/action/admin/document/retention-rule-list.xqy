@@ -12,5 +12,5 @@ let $statement := map:put($request-attribute, "query", $query)
 let $statement := map:put($request-attribute, "retention-rules", $retention-rules)
         
 return (
-    mledms-utils:forward("/admin/document/retention-search.xqy", $request-attribute)
+    mledms-utils:forward("/admin/document/retention-rule-list.xqy", $request-attribute)
 )

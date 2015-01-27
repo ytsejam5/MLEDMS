@@ -7,14 +7,21 @@ import module namespace sec = "http://marklogic.com/xdmp/security" at "/MarkLogi
 
 declare namespace mledms = "https://github.com/ytsejam5/mledml/mledms";
 
-declare function mledms-security:search-roles($query as xs:string, $start as xs:long, $page-length as xs:long) as node()* {
+declare function mledms-security:search-roles($query as xs:string, $start as xs:long, $page-length as xs:long, $exclude-role-id as xs:string?) as node()* {
     let $search-result := search:search($query,
         <options xmlns="http://marklogic.com/appservices/search">
             <additional-query>
             {
-                cts:and-query((
-                    cts:directory-query("/roles/", "infinity")
-                ))
+                if ($exclude-role-id) then (
+                    cts:and-query((
+                        cts:directory-query("/roles/", "infinity"),
+                        cts:not-query(cts:document-query(fn:concat("/roles/", $exclude-role-id)))
+                    ))
+                ) else (
+                    cts:and-query((
+                        cts:directory-query("/roles/", "infinity")
+                    ))
+                )
             }
             </additional-query>
             <transform-results apply="raw">
@@ -457,12 +464,35 @@ declare function mledms-security:user-get-roles($user-name as xs:string) as xs:s
         </options>)
 };
 
+declare function mledms-security:role-get-roles($role-name as xs:string) as xs:string* {
+    xdmp:eval(
+       'xquery version "1.0-ml";
+        import module namespace sec = "http://marklogic.com/xdmp/security" at "/MarkLogic/security.xqy";
+        declare variable $role-name external;
+        sec:role-get-roles($role-name)',
+        (xs:QName("role-name"), $role-name),
+        <options xmlns="xdmp:eval">
+            <database>{ xdmp:security-database() }</database>
+            <user-id>{ xdmp:user("admin") }</user-id>
+        </options>)
+};
+
 declare function mledms-security:serialize-user-roles(
         $user-name as xs:string,
         $role-names as xs:string*) as xs:string {
     let $document := element user-roles {
         element user-name { $user-name },
         for $i in $role-names return element role-name { $i }
+    }
+    return xdmp:quote($document)
+};
+
+declare function mledms-security:serialize-role-roles(
+        $role-name as xs:string,
+        $role-names as xs:string*) as xs:string {
+    let $document := element role-roles {
+        element role-name { $role-name },
+        for $i in $role-names return element parent-role-name { $i }
     }
     return xdmp:quote($document)
 };
@@ -484,6 +514,29 @@ declare function mledms-security:user-add-roles(
             let $role-names := $document/user-roles/role-name/text()
             return sec:user-add-roles($user-name, $role-names)',
             (xs:QName("serialized-user-roles"), $serialized-user-roles),
+            <options xmlns="xdmp:eval">
+                <database>{ xdmp:security-database() }</database>
+                <user-id>{ xdmp:user("admin") }</user-id>
+            </options>)
+};
+
+declare function mledms-security:role-add-roles(
+   $role-name as xs:string,
+   $role-names as xs:string*
+) as empty-sequence() {
+    let $serialized-role-roles := mledms-security:serialize-role-roles(
+            $role-name,
+            $role-names)
+    return
+        xdmp:eval(
+           'xquery version "1.0-ml";
+            import module namespace sec = "http://marklogic.com/xdmp/security" at "/MarkLogic/security.xqy";
+            declare variable $serialized-role-roles external;
+            let $document := xdmp:unquote($serialized-role-roles)
+            let $role-name := $document/role-roles/role-name/text()
+            let $role-names := $document/role-roles/parent-role-name/text()
+            return sec:role-add-roles($role-name, $role-names)',
+            (xs:QName("serialized-role-roles"), $serialized-role-roles),
             <options xmlns="xdmp:eval">
                 <database>{ xdmp:security-database() }</database>
                 <user-id>{ xdmp:user("admin") }</user-id>
@@ -513,18 +566,23 @@ declare function mledms-security:user-remove-roles(
             </options>)
 };
 
-declare function mledms-security:role-add-role(
+declare function mledms-security:role-remove-roles(
    $role-name as xs:string,
-   $grant-role-name as xs:string
+   $role-names as xs:string*
 ) as empty-sequence() {
+    let $serialized-role-roles := mledms-security:serialize-role-roles(
+            $role-name,
+            $role-names)
+    return
         xdmp:eval(
            'xquery version "1.0-ml";
             import module namespace sec = "http://marklogic.com/xdmp/security" at "/MarkLogic/security.xqy";
-            declare variable $role-name external;
-            declare variable $grant-role-name external;
-            sec:role-add-roles($role-name, $grant-role-name)',
-           ((xs:QName("role-name"), $role-name),
-            (xs:QName("grant-role-name"), $grant-role-name)),
+            declare variable $serialized-role-roles external;
+            let $document := xdmp:unquote($serialized-role-roles)
+            let $role-name := $document/role-roles/role-name/text()
+            let $role-names := $document/role-roles/parent-role-name/text()
+            return sec:role-remove-roles($role-name, $role-names)',
+            (xs:QName("serialized-role-roles"), $serialized-role-roles),
             <options xmlns="xdmp:eval">
                 <database>{ xdmp:security-database() }</database>
                 <user-id>{ xdmp:user("admin") }</user-id>
@@ -588,6 +646,35 @@ declare function mledms-security:create-privilege(
             (xs:QName("action"), $action),
             (xs:QName("kind"), $kind),
             (xs:QName("role-names"), $role-names)),
+            <options xmlns="xdmp:eval">
+                <database>{ xdmp:security-database() }</database>
+                <user-id>{ xdmp:user("admin") }</user-id>
+            </options>)
+};
+
+
+declare function mledms-security:role-privileges(
+    $role-name as xs:string)  as element(sec:privilege)* {
+        xdmp:eval(
+           'xquery version "1.0-ml";
+            import module namespace sec = "http://marklogic.com/xdmp/security" at "/MarkLogic/security.xqy";
+            declare variable $role-name external;
+            sec:role-privileges($role-name)',
+           ((xs:QName("role-name"), $role-name)),
+            <options xmlns="xdmp:eval">
+                <database>{ xdmp:security-database() }</database>
+                <user-id>{ xdmp:user("admin") }</user-id>
+            </options>)
+};
+
+declare function mledms-security:user-privileges(
+    $user-name as xs:string)  as element(sec:privilege)* {
+        xdmp:eval(
+           'xquery version "1.0-ml";
+            import module namespace sec = "http://marklogic.com/xdmp/security" at "/MarkLogic/security.xqy";
+            declare variable $user-name external;
+            sec:user-privileges($user-name)',
+           ((xs:QName("user-name"), $user-name)),
             <options xmlns="xdmp:eval">
                 <database>{ xdmp:security-database() }</database>
                 <user-id>{ xdmp:user("admin") }</user-id>

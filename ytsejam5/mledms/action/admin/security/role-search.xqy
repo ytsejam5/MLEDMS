@@ -9,7 +9,7 @@ let $query := xdmp:get-request-field("q", "")
 let $start := xdmp:get-request-field("start", "1")
 let $page-length := xdmp:get-request-field("page-length", "10")
 
-let $search-result := mledms-security:search-roles($query, xs:unsignedLong($start), xs:unsignedLong($page-length))
+let $search-result := mledms-security:search-roles($query, xs:unsignedLong($start), xs:unsignedLong($page-length), ())
     
 let $statement := map:put($request-attribute, "query", $query)
 let $statement := map:put($request-attribute, "search-result", $search-result)

@@ -10,9 +10,11 @@ return
                     <div class="panel-heading">ユーザ管理メニュー</div>
                     <ul class="list-group">
                         <li class="list-group-item"><a href="{mledms-utils:create-command-url("admin/security/user-detail", <params><param name="user-id">{$user-id}</param></params>)}">基本情報</a></li>
-                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("admin/security/user-parent-roles", <params><param name="user-id">{$user-id}</param></params>)}">所属ロール</a></li>
-                        <li class="list-group-item"><a href="#">デフォルトアクセス権限</a></li>
+                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("admin/security/user-parent-roles", <params><param name="user-id">{$user-id}</param></params>)}">上位ロール</a></li>
+                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("admin/security/user-privilege-list", <params><param name="user-id">{$user-id}</param></params>)}">権限</a></li>
+                        <li class="list-group-item"><a href="#">デフォルトパーミッション</a></li>
                         <li class="list-group-item"><a href="#">デフォルトコレクション</a></li>
                         <li class="list-group-item"><a href="#">外部名マッピング</a></li>
+                        <li class="list-group-item"><a href="#">最終ログイン</a></li>
                     </ul>
                 </div> 
