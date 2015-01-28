@@ -10,6 +10,8 @@ let $collections := map:get($mledms-utils:request-attribute, "collections")
 let $properties := map:get($mledms-utils:request-attribute, "properties")
 let $weight := map:get($mledms-utils:request-attribute, "weight")
 
+let $lock := map:get($mledms-utils:request-attribute, "lock")
+
 return
         <div xmlns="http://www.w3.org/1999/xhtml">
             <div class="col-lg-12 row">
@@ -53,13 +55,25 @@ return
                         <div class="col-sm-9">{ $weight }</div>
                     </div>
                     <div class="row">
+{
+    if ($lock) then (
+                        <div class="col-sm-offset-3 col-sm-9 text-right">
+                            <a href="{mledms-utils:create-command-url("download", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">ダウンロード</a>
+                            <span> | </span>
+                            <a href="{mledms-utils:create-command-url("update-form", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button" disabled="true">更新</a>
+                            <span> | </span>
+                            <a href="{mledms-utils:create-command-url("delete", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button" disabled="true">削除</a>
+                        </div>
+    ) else (
                         <div class="col-sm-offset-3 col-sm-9 text-right">
                             <a href="{mledms-utils:create-command-url("download", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">ダウンロード</a>
                             <span> | </span>
                             <a href="{mledms-utils:create-command-url("update-form", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">更新</a>
                             <span> | </span>
                             <a href="{mledms-utils:create-command-url("delete", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">削除</a>
-                        </div>
+                          </div>
+    )
+}
                     </div>
                 </fieldset>
                 <br/>

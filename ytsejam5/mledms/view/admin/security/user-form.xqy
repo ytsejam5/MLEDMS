@@ -13,7 +13,7 @@ let $user := map:get($mledms-utils:request-attribute, "user")
 return
         <div xmlns="http://www.w3.org/1999/xhtml">
             <div class="col-lg-12 row">
-                <h3>
+                <h3><a href="{mledms-utils:create-command-url("admin/security/user-search", ())}">ユーザ管理</a> &gt; 
 {
     if ($form-type eq "admin/security/user-create") then "ユーザ登録"
     else if ($form-type eq "admin/security/user-update") then ("ユーザ更新 ", <small>{ $user/mledms:user/mledms:user-name/text() }</small>)

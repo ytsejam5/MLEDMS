@@ -13,7 +13,7 @@ declare variable $mledms-utils:request-attribute as map:map external;
                     <ul class="list-group">
                         <li class="list-group-item"><a href="#">コレクション管理</a></li>
                         <li class="list-group-item"><a href="#">ID体系管理</a></li>
-                        <li class="list-group-item"><a href="#">保存ポリシー管理</a></li>
+                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("admin/document/retention-rule-list", ())}">保存ルール管理</a></li>
                     </ul>
                     <ul class="list-group">
                         <li class="list-group-item"><a href="#">クラスタ管理</a></li>

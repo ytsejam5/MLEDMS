@@ -24,5 +24,8 @@ let $statement := map:put($request-attribute, "directory", $directory)
 let $statement := map:put($request-attribute, "collections", $collections)
 let $statement := map:put($request-attribute, "weight", $weight)
 
+let $lock := xdmp:document-locks($document-uri)
+let $statement := map:put($request-attribute, "lock", $lock)
+
 return
     mledms-utils:forward("/detail.xqy", $request-attribute)

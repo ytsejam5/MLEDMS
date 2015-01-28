@@ -75,7 +75,7 @@ xdmp:set-response-content-type("text/html; charset=UTF-8"),
                                 <hr/>
                                 <li><a href="#">コレクション管理</a></li>
                                 <li><a href="#">ID体系管理</a></li>
-                                <li><a href="#">保存ポリシー管理</a></li>
+                                <li><a href="{mledms-utils:create-command-url("admin/document/retention-rule-list", ())}">保存ルール管理</a></li>
                                 <hr/>
                                 <li><a href="#">クラスタ管理</a></li>
                                 <li><a href="#">辞書管理</a></li>

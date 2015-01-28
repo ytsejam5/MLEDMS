@@ -13,7 +13,7 @@ let $role := map:get($mledms-utils:request-attribute, "role")
 return
         <div xmlns="http://www.w3.org/1999/xhtml">
             <div class="col-lg-12 row">
-                <h3>
+                <h3><a href="{mledms-utils:create-command-url("admin/security/role-search", ())}">ロール管理</a> &gt; 
 {
     if ($form-type eq "admin/security/role-create") then "ロール登録"
     else if ($form-type eq "admin/security/role-update") then ("ロール更新 ", <small>{ $role/mledms:role/mledms:role-name/text() }</small>)

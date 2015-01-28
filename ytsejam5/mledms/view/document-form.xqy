@@ -36,21 +36,23 @@ return
                             <label class="col-sm-3 control-label">リソース</label>
                             <div class="col-sm-9">
                                 <div class="row form-group">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 text-right">
                                         <label>
-                                            <input type="radio" name="resource-type" id="resource-type-url" value="url" /> URL・パスを指定<br/>
+                                            URL・パスを指定 <input type="radio" name="resource-type" id="resource-type-url" value="url" />
                                         </label>
                                     </div>
                                     <div class="col-sm-9">
-                                        <input type="text" name="resource-url" id="file" class="form-control" placeholder="URL" onfocus="getElementById('resource-type-url').checked=true"/><br/>
-                                        <input type="checkbox" name="" value="url" checked="true" disabled="true" /> ファイルを取り込む
+                                        <div class="input-group">
+                                            <input type="text" name="resource-url" id="file" class="form-control" placeholder="URL" onfocus="getElementById('resource-type-url').checked=true"/>
+                                            <span class="input-group-addon"><input type="checkbox" name="" value="url" checked="true" disabled="true" /> 取り込む</span>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="row form-group">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-3 text-right">
                                         <label>
-                                            <input type="radio" name="resource-type" id="resource-type-upload" value="upload" checked="true"/> ファイルをアップロード
+                                           アップロード <input type="radio" name="resource-type" id="resource-type-upload" value="upload" checked="true"/>
                                         </label>
                                     </div>
                                     <div class="col-sm-9">
@@ -58,10 +60,10 @@ return
                                     </div>
                                 </div>
  {  if (fn:not($form-type eq "create")) then (
-                                <div class="row form-group">
+                                <div class="row form-group text-right">
                                     <div class="col-sm-3">
                                         <label>
-                                            <input type="radio" name="resource-type" id="resource-type-none" value="" checked="true"/>上書きしない
+                                            上書きしない <input type="radio" name="resource-type" id="resource-type-none" value="" checked="true"/>
                                         </label>
                                     </div>
                                     <div class="col-sm-9">
@@ -77,35 +79,35 @@ return
                                 <select class="form-control" name="id-type">
                                     <option value="file-name">ファイル名を利用</option>
                                     <option value="guid">GUIDを生成</option>
-                                    <option disabled="true">ISMS文書体系に準拠 (ディレクトリ設定は無視されます。)</option>
-                                    <option disabled="true">ISO14001文書体系に準拠 (ディレクトリ設定は無視されます。)</option>
+                                    <option disabled="true">ISMS文書体系に準拠</option>
+                                    <option disabled="true">ISO14001文書体系に準拠</option>
                                 </select>
                             </div>
                         </div>,
                         <div class="row form-group">
                             <label class="col-sm-3 control-label">ディレクトリ</label>
                             <div class="col-sm-9">
-                                <input type="text" name="directory" class="form-control" value="" placeholder="例. /directory1/"/>
+                                <input type="text" name="directory" class="form-control" value="" placeholder=""/>
                             </div>
                         </div>
     ) else (
                         <div class="row form-group">
                             <label class="col-sm-3 control-label">ディレクトリ</label>
                             <div class="col-sm-9">
-                                <input type="text" name="directory" class="form-control" value="{ $directory }" placeholder="例. /directory1/" readonly="true"/>
+                                <input type="text" name="directory" class="form-control" value="{ $directory }" placeholder="" readonly="true"/>
                             </div>
                         </div>
     )  }
                         <div class="row form-group">
                             <label class="col-sm-3 control-label">コレクション</label>
                             <div class="col-sm-9">
-                                <input type="text" name="collection" class="form-control" value="{ fn:string-join($collections, ", ") }" placeholder="例. 経営情報,機密情報"/>
+                                <input type="text" name="collection" class="form-control" value="{ fn:string-join($collections, ", ") }" placeholder=""/>
                             </div>
                         </div>
                         <div class="row form-group">
                             <label class="col-sm-3 control-label">重み</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="weight" class="form-control" value="{ $weight }" placeholder="数値で入力)"/>
+                            <div class="col-sm-3">
+                                <input type="text" name="weight" class="form-control text-right" value="{ $weight }" placeholder=""/>
                             </div>
                         </div>
                     </fieldset>

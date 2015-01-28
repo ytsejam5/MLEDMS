@@ -9,12 +9,12 @@ return
                 <div class="panel panel-default">
                     <div class="panel-heading">メニュー</div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("detail",       <params><param name="document-uri">{$document-uri}</param></params>)}">基本情報</a></li>
-                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("metadata",     <params><param name="document-uri">{$document-uri}</param></params>)}">メタデータ</a></li>
-                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("permission",     <params><param name="document-uri">{$document-uri}</param></params>)}">アクセス権限</a></li>
-                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("lock-status",  <params><param name="document-uri">{$document-uri}</param></params>)}">ロックステータス</a></li>
-                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("version",      <params><param name="document-uri">{$document-uri}</param></params>)}">バージョン情報</a></li>
-                        <li class="list-group-item"><a href="#(:{mledms-utils:create-command-url("retention",    <params><param name="document-uri">{$document-uri}</param></params>)}:)">保存ポリシー</a></li>
+                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("detail", <params><param name="document-uri">{$document-uri}</param></params>)}">基本情報</a></li>
+                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("metadata", <params><param name="document-uri">{$document-uri}</param></params>)}">メタデータ</a></li>
+                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("permission", <params><param name="document-uri">{$document-uri}</param></params>)}">アクセス権限</a></li>
+                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("lock-status", <params><param name="document-uri">{$document-uri}</param></params>)}">ロックステータス</a></li>
+                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("version", <params><param name="document-uri">{$document-uri}</param></params>)}">バージョン情報</a></li>
+                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("retention", <params><param name="document-uri">{$document-uri}</param></params>)}">保存ルール</a></li>
                         <li class="list-group-item"><a href="#(:{mledms-utils:create-command-url("alert",        <params><param name="document-uri">{$document-uri}</param></params>)}:)">発動アラート</a></li>
                         <li class="list-group-item"><a href="#(:{mledms-utils:create-command-url("cluster",      <params><param name="document-uri">{$document-uri}</param></params>)}:)">所属クラスタ</a></li>
                         <li class="list-group-item"><a href="#(:{mledms-utils:create-command-url("nlp",          <params><param name="document-uri">{$document-uri}</param></params>)}:)">自然言語抽出</a></li>

@@ -135,7 +135,7 @@ return
         }
                     <div class="row">
                         <div class="col-sm-12 text-right">
-                            <a href="{mledms-utils:create-command-url("versions-purge", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">全バージョン削除</a>
+                            <a href="{mledms-utils:create-command-url("versions-purge", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">保存ルール適用</a>
                         </div>
                     </div> 
                 </fieldset>,
