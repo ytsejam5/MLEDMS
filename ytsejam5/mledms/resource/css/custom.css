@@ -29,3 +29,8 @@ a.search-result {
 .right-pain {
  
 }
+
+.tree td {
+	line-height: 1.3;
+	font-size: 15px;
+}

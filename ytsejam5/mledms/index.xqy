@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-import module namespace mledms-utils = "https://github.com/ytsejam5/mledml/utils" at "/ytsejam5/mledms/utils/utils.xqy";
+import module namespace mledms-utils = "https://github.com/ytsejam5/mledms/utils" at "/ytsejam5/mledms/utils/utils.xqy";
 
 let $command := xdmp:get-request-field("command", "search")
 let $request-attribute :=  map:map()

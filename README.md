@@ -43,26 +43,26 @@ Java API、RESTを使ってデータベースクライアント側でロジッ�
 ## スクリーンショット
 
 検索画面 (スニペットとかハイライトとか、API呼ぶだけですね。)<br>
-[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/search.png" width="450"/>](https://github.com/ytsejam5/mledml/mledms/blob/master/screenshots/search.png)<br>
+[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/search.png" width="450"/>](https://github.com/ytsejam5/mledms/mledms/blob/master/screenshots/search.png)<br>
 
 詳細表示画面 (テキストは全文、画像はサムネイルを表示させてます。)<br>
-[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/detail-text.png" width="450"/>](https://github.com/ytsejam5/mledml/mledms/blob/master/screenshots/detail-text.png)
-[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/detail-image.png" width="450"/>](https://github.com/ytsejam5/mledml/mledms/blob/master/screenshots/detail-image.png)<br>
+[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/detail-text.png" width="450"/>](https://github.com/ytsejam5/mledms/mledms/blob/master/screenshots/detail-text.png)
+[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/detail-image.png" width="450"/>](https://github.com/ytsejam5/mledms/mledms/blob/master/screenshots/detail-image.png)<br>
 
 メタデータ表示画面 (これもMarkLogicが属性抽出をやってくれます。対応するファイルフォーマット一覧は[こちら](http://www.marklogic.com/resources/marklogic-document-format-support/resource_download/datasheets/))<br>
-[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/metadata.png" width="450"/>](https://github.com/ytsejam5/mledml/mledms/blob/master/screenshots/metadata.png)<br>
+[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/metadata.png" width="450"/>](https://github.com/ytsejam5/mledms/mledms/blob/master/screenshots/metadata.png)<br>
 
 アクセス権限表示画面 (データ、ディレクトリ、コレクション単位でロールを割り当てます。設定機能はまだ作っていません。)<br>
-[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/security.png" width="450"/>](https://github.com/ytsejam5/mledml/mledms/blob/master/screenshots/security.png)<br>
+[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/security.png" width="450"/>](https://github.com/ytsejam5/mledms/mledms/blob/master/screenshots/security.png)<br>
 
 ロックステータス管理画面 (APIで共有ロックと排他ロックが選べます。)<br>
-[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/lock.png" width="450"/>](https://github.com/ytsejam5/mledml/mledms/blob/master/screenshots/lock.png)<br>
+[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/lock.png" width="450"/>](https://github.com/ytsejam5/mledms/mledms/blob/master/screenshots/lock.png)<br>
 
 バージョン管理画面 (チェックイン、チェックアウトとか。バージョン履歴にコメントも残せます。これもAPI呼んでいるだけです。)<br>
-[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/version.png" width="450"/>](https://github.com/ytsejam5/mledml/mledms/blob/master/screenshots/version.png)<br>
+[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/version.png" width="450"/>](https://github.com/ytsejam5/mledms/mledms/blob/master/screenshots/version.png)<br>
 
 WevDAV接続イメージ ([Carot DAV](http://rei.to/carotdav.html)を使って繋いでいる例です。一括取り込みも楽チンです。)<br>
-[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/webdav.png" width="450"/>](https://github.com/ytsejam5/mledml/mledms/blob/master/screenshots/webdav.png)<br>
+[<img src="https://raw.githubusercontent.com/ytsejam5/mledms/master/screenshots/webdav.png" width="450"/>](https://github.com/ytsejam5/mledms/mledms/blob/master/screenshots/webdav.png)<br>
 
 ## 処理の流れ
 /index.xqy がMVCでいうところのコントローラです。

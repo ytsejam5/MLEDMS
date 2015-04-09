@@ -1,11 +1,11 @@
 xquery version "1.0-ml";
 
-module namespace mledms-security = "https://github.com/ytsejam5/mledml/security";
+module namespace mledms-security = "https://github.com/ytsejam5/mledms/security";
 
 import module namespace search = "http://marklogic.com/appservices/search" at "/MarkLogic/appservices/search/search.xqy";
 import module namespace sec = "http://marklogic.com/xdmp/security" at "/MarkLogic/security.xqy";
 
-declare namespace mledms = "https://github.com/ytsejam5/mledml/mledms";
+declare namespace mledms = "https://github.com/ytsejam5/mledms/mledms";
 
 declare function mledms-security:search-roles($query as xs:string, $start as xs:long, $page-length as xs:long, $exclude-role-id as xs:string?) as node()* {
     let $search-result := search:search($query,
@@ -29,11 +29,11 @@ declare function mledms-security:search-roles($query as xs:string, $start as xs:
                 </preferred-elements>
             </transform-results>
             <sort-order type="xs:string" collation="http://marklogic.com/collation/" direction="ascending">
-                <element ns="https://github.com/ytsejam5/mledml/mledms" name="role-name"/>
+                <element ns="https://github.com/ytsejam5/mledms/mledms" name="role-name"/>
             </sort-order>
             <operator name="sort">
                 <sort-order type="xs:string" collation="http://marklogic.com/collation/" direction="ascending">
-                    <element ns="https://github.com/ytsejam5/mledml/mledms" name="role-name"/>
+                    <element ns="https://github.com/ytsejam5/mledms/mledms" name="role-name"/>
                 </sort-order>
             </operator>
             <return-results>true</return-results>
@@ -303,11 +303,11 @@ declare function mledms-security:search-users($query as xs:string, $start as xs:
                 </preferred-elements>
             </transform-results>
             <sort-order type="xs:string" collation="http://marklogic.com/collation/" direction="ascending">
-                <element ns="https://github.com/ytsejam5/mledml/mledms" name="user-name"/>
+                <element ns="https://github.com/ytsejam5/mledms/mledms" name="user-name"/>
             </sort-order>
             <operator name="sort">
                 <sort-order type="xs:string" collation="http://marklogic.com/collation/" direction="ascending">
-                    <element ns="https://github.com/ytsejam5/mledml/mledms" name="user-name"/>
+                    <element ns="https://github.com/ytsejam5/mledms/mledms" name="user-name"/>
                 </sort-order>
             </operator>
             <return-results>true</return-results>

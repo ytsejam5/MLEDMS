@@ -1,8 +1,8 @@
 xquery version "1.0-ml";
 
-import module namespace mledms-utils = "https://github.com/ytsejam5/mledml/utils" at "/ytsejam5/mledms/utils/utils.xqy";
+import module namespace mledms-utils = "https://github.com/ytsejam5/mledms/utils" at "/ytsejam5/mledms/utils/utils.xqy";
 
-declare namespace mledms = "https://github.com/ytsejam5/mledml/mledms";
+declare namespace mledms = "https://github.com/ytsejam5/mledms/mledms";
 
 declare variable $mledms-utils:request-attribute as map:map external;
 

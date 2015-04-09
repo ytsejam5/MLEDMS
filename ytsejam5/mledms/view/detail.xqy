@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-import module namespace mledms-utils = "https://github.com/ytsejam5/mledml/utils" at "/ytsejam5/mledms/utils/utils.xqy";
+import module namespace mledms-utils = "https://github.com/ytsejam5/mledms/utils" at "/ytsejam5/mledms/utils/utils.xqy";
 
 declare variable $mledms-utils:request-attribute as map:map external;
 
@@ -32,7 +32,7 @@ return
     if (fn:starts-with(fn:string($properties/*:properties/*:html/*:head/*:meta[@name eq "content-type"]/@content), "image/")) then (
                         <label class="col-sm-3 control-label text-right">サムネイル</label>,
                         <div class="col-sm-9">
-                            <img src="{mledms-utils:create-command-url("display-image", <params><param name="document-uri">{$document-uri}</param></params>)}" class="thumbnail"/>
+                            <img src="{mledms-utils:create-command-url("retrieve", <params><param name="document-uri">{$document-uri}</param></params>)}" class="thumbnail"/>
                         </div>
     ) else (
                         <label class="col-sm-3 control-label text-right">内容</label>,
@@ -58,6 +58,8 @@ return
 {
     if ($lock) then (
                         <div class="col-sm-offset-3 col-sm-9 text-right">
+                            <a target="_blank" href="{mledms-utils:create-command-url("retrieve", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">ブラウザで表示</a>
+                            <span> | </span>
                             <a href="{mledms-utils:create-command-url("download", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">ダウンロード</a>
                             <span> | </span>
                             <a href="{mledms-utils:create-command-url("update-form", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button" disabled="true">更新</a>
@@ -66,6 +68,8 @@ return
                         </div>
     ) else (
                         <div class="col-sm-offset-3 col-sm-9 text-right">
+                            <a target="_blank" href="{mledms-utils:create-command-url("retrieve", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">ブラウザで表示</a>
+                            <span> | </span>
                             <a href="{mledms-utils:create-command-url("download", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">ダウンロード</a>
                             <span> | </span>
                             <a href="{mledms-utils:create-command-url("update-form", <params><param name="document-uri">{$document-uri}</param></params>)}" class="btn btn-default" role="button">更新</a>

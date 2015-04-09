@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-import module namespace mledms-utils = "https://github.com/ytsejam5/mledml/utils" at "/ytsejam5/mledms/utils/utils.xqy";
+import module namespace mledms-utils = "https://github.com/ytsejam5/mledms/utils" at "/ytsejam5/mledms/utils/utils.xqy";
 
 declare variable $mledms-utils:request-attribute as map:map external;
 
@@ -19,6 +19,7 @@ return
                 <div class="alert alert-danger" role="alert">
                     <span class="sr-only">Error:</span>
                     { $error/error:message/text() }
+                    <pre>{xdmp:quote($error)}</pre>
                 </div>
     ) else ()
 }

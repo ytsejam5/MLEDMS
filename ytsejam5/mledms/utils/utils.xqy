@@ -1,7 +1,7 @@
 xquery version "1.0-ml";
 (: ignore the error XDMP-EVALLIBMOD in using XQDT (https://bugs.eclipse.org/bugs/show_bug.cgi?id=307910):)
 
-module namespace mledms-utils = "https://github.com/ytsejam5/mledml/utils";
+module namespace mledms-utils = "https://github.com/ytsejam5/mledms/utils";
 
 declare namespace search = "http://marklogic.com/appservices/search";
 
@@ -60,6 +60,26 @@ declare function mledms-utils:create-command-url($command as xs:string, $paramet
 
 declare function mledms-utils:get-metadata($document-uri as xs:string) as node()* {
     xdmp:document-properties($document-uri)/*:properties/*:html/*:head/*:meta
+};
+
+
+declare function mledms-utils:get-directories($root as xs:string, $expanded as xs:string*, $current as xs:string) as item()* {
+    let $idmap := map:map()
+    return
+        for $entry-uri at $id in cts:uris()
+        let $parent := if ($entry-uri eq "/") then "" else fn:replace($entry-uri, "^(.*/)[^/]+/$", "$1")
+        let $name := if ($entry-uri eq "/") then "/" else fn:replace($entry-uri, "^.*/([^/]+/)$", "$1")
+        let $statement := map:put($idmap, $entry-uri, $id)
+        where fn:ends-with($entry-uri, "/")
+        return
+            element directory {
+                attribute id { $id },
+                attribute uri { $entry-uri },
+                attribute parent-id { map:get($idmap, $parent) },
+                attribute expanded { if (fn:index-of($expanded, $entry-uri)) then ("true") else ("false") },
+                attribute current { if ($entry-uri eq $current) then ("true") else ("false") },
+                $name
+            }
 };
 
         

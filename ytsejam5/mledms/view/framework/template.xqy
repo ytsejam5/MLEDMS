@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-import module namespace mledms-utils = "https://github.com/ytsejam5/mledml/utils" at "/ytsejam5/mledms/utils/utils.xqy";
+import module namespace mledms-utils = "https://github.com/ytsejam5/mledms/utils" at "/ytsejam5/mledms/utils/utils.xqy";
 
 declare variable $mledms-utils:request-attribute as map:map external;
 
@@ -14,7 +14,10 @@ xdmp:set-response-content-type("text/html; charset=UTF-8"),
         <link rel="stylesheet" href="/resource/css/custom.css"/>
         <script src="/resource/js/jquery-1.11.2.min.js"/>
         <script src="/resource/js/bootstrap.min.js"/>
+        <script src="/resource/js/jquery.treegrid.js"/>
+        <link rel="stylesheet" href="/resource/css/jquery.treegrid.css"/>
         <script src="/resource/js/custom.js"/>
+
     </head>
     <body>
         <div class="page-header">
@@ -41,7 +44,7 @@ xdmp:set-response-content-type("text/html; charset=UTF-8"),
                         <li><a href="{mledms-utils:create-command-url("search", ())}">コレクショナル検索</a></li>
             )
         }
-                        <li><a href="#">ディレクトリ検索</a></li>
+                        <li><a href="{mledms-utils:create-command-url("directory-search", ())}">ディレクトリ検索</a></li>
                         <li><a href="#">ユーザ検索</a></li>
                         <li><a href="#">セマンティクス検索</a></li>
                     </ul>
@@ -49,6 +52,8 @@ xdmp:set-response-content-type("text/html; charset=UTF-8"),
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">データ登録 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">営業情報</a></li>
+                                <li><a href="{mledms-utils:create-command-url("sales-support-knowledge-create-form", ())}">営業サポート情報</a></li>
                                 <li><a href="{mledms-utils:create-command-url("create-form", ())}">ドキュメント</a></li>
                                 <hr/>
                                 <li><a href="#">Doblin Core</a></li>
@@ -98,5 +103,8 @@ xdmp:set-response-content-type("text/html; charset=UTF-8"),
                 <isolation>same-statement</isolation>
             </options>)
 }
+        <script type="text/javascript">
+        $('.tree').treegrid();
+        </script>
     </body>
 </html>

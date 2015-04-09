@@ -1,12 +1,13 @@
 ﻿xquery version "1.0-ml";
 
-import module namespace mledms-utils = "https://github.com/ytsejam5/mledml/utils" at "/ytsejam5/mledms/utils/utils.xqy";
+import module namespace mledms-utils = "https://github.com/ytsejam5/mledms/utils" at "/ytsejam5/mledms/utils/utils.xqy";
 import module namespace search = "http://marklogic.com/appservices/search" at "/MarkLogic/appservices/search/search.xqy";
 
 declare variable $mledms-utils:request-attribute as map:map external;
 
 let $query := map:get($mledms-utils:request-attribute, "query")
 let $search-result := map:get($mledms-utils:request-attribute, "search-result")
+let $facets := map:get($mledms-utils:request-attribute, "facets")
 
 return 
         <div xmlns="http://www.w3.org/1999/xhtml">   
@@ -16,18 +17,18 @@ return
             </div>         
             <div class="col-lg-3 left-pane">
 {
-    if ($search-result/search:facet) then (
-        for $i in $search-result/search:facet
+    if ($facets) then (
+        for $i in $facets
         return (
                 <div class="panel panel-default">
                     <div class="panel-heading">{if(fn:string($i/@name) eq "collection") then ("コレクション") else (fn:string($i/@name))}</div>
                     <ul class="list-group">
             {
-                for $j in $i/search:facet-value
+                for $j in $i/*:facet-value
                 return
                     let $constraint := fn:concat(fn:string($i/@name), ":", $j/text())
                     return
-                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("search", (<params><param name="q">{ if (fn:matches($query, $constraint)) then $query else fn:concat($query, " ", $constraint) }</param></params>))}">{$j/text()}</a> ({ fn:string($j/@count) })</li>,
+                        <li class="list-group-item"><a href="{mledms-utils:create-command-url("search", (<params><param name="q">{ if (fn:matches($query, $constraint)) then $query else fn:concat($query, " ", $constraint) }</param></params>))}">{$j}</a> ({ fn:string($j/@count) })</li>,
                  if (fn:matches($query, fn:concat("(\s*)", fn:string($i/@name), ":([^\s]+)"))) then (
                         <li class="list-group-item text-right">[ <a href="{mledms-utils:create-command-url("search", (<params><param name="q">{ fn:replace($query, fn:concat("(\s*)", fn:string($i/@name), ":([^\s]+)"), "") }</param></params>))}">絞込みを解除</a> ]</li>
                 ) else ()

@@ -1,10 +1,10 @@
 xquery version "1.0-ml";
 
-module namespace mledms-config = "https://github.com/ytsejam5/mledml/config";
+module namespace mledms-config = "https://github.com/ytsejam5/mledms/config";
 
 declare variable $mledms-config:query-options := 
-    <options xmlns="http://marklogic.com/appservices/search">
-        <searchable-expression>xdmp:document-properties()//html</searchable-expression>
+    <options xmlns="http://marklogic.com/appservices/search" xmlns:prop="http://marklogic.com/xdmp/property">
+        <searchable-expression>xdmp:document-properties()/prop:properties/html</searchable-expression>
         <additional-query>
         {
             cts:and-query((
@@ -23,8 +23,10 @@ declare variable $mledms-config:query-options :=
                 <facet-option>frequency-order</facet-option>
                 <facet-option>descending</facet-option>
                 <facet-option>limit=20</facet-option>
+                <facet-option>properties</facet-option>
             </collection>
         </constraint>
+        <return-constraints>true</return-constraints>
         <return-facets>true</return-facets>
         <return-metrics>true</return-metrics>
         <return-results>true</return-results>
